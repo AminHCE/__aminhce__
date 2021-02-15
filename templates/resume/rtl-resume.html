@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'resume/css/style-rtl.css' %}" />
     </head>
 
-    <body lang="en">
+    <body lang="fa">
         <aside id="sidebar">
             <div class="side-block" id="contact">
                 <h1>
@@ -24,7 +24,7 @@
                     <li><i class="fa fa-envelope"></i> {{ information.email }}</li>
                 {% endif %}
                 {% if information.phone %}
-                    <li><i class="fa fa-phone"></i> {{ information.phone }}</li>
+                    <li s><i class="fa fa-phone"></i> {{ information.phone }}</li>
                 {% endif %}
                 {% if information.address %}
                     <li><i class="fa fa-map-pin"></i> {{ information.address }}</li>
@@ -69,12 +69,16 @@
                 {% endfor %}
             </div>
             <div class="side-block" id="disclaimer">
-                This r&eacute;sum&eacute; was wholly typeset with HTML/CSS <code>github.com/AminHCE</code>
+                This r&eacute;sum&eacute; created by aminhce <code>github.com/AminHCE</code>
             </div>
         </aside>
         <section id="main">
             <header id="title">
-                <h1>{{ information.full_name }}</h1>
+                <h1>{{ information.full_name }}
+                    <button onclick="window.print();" class="print-button">
+                        <i class="fa fa-print"></i>
+                    </button>
+                </h1>
                 {% if information.quote %}<span class="subtitle">{{ information.quote }}</span>{% endif %}
             </header>
             <!-- Experiences -->

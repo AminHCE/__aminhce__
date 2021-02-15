@@ -69,12 +69,16 @@
                 {% endfor %}
             </div>
             <div class="side-block" id="disclaimer">
-                This r&eacute;sum&eacute; was wholly typeset with HTML/CSS <code>github.com/AminHCE</code>
+                This r&eacute;sum&eacute; created by aminhce <code>github.com/AminHCE</code>
             </div>
         </aside>
         <section id="main">
             <header id="title">
-                <h1>{{ information.full_name }}</h1>
+                <h1>{{ information.full_name }}
+                    <button onclick="window.print();" class="print-button">
+                        <i class="fa fa-print"></i>
+                    </button>
+                </h1>
                 {% if information.quote %}<span class="subtitle">{{ information.quote }}</span>{% endif %}
             </header>
             <!-- Experiences -->
