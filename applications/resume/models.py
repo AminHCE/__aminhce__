@@ -57,8 +57,9 @@ class LanguageSkill(Language):
 class Education(Language):
     title = models.CharField(max_length=150)
     university = models.CharField(max_length=150, blank=True, null=True)
-    begin_time = models.DateField()
-    end_time = models.DateField()
+    begin_time = models.DateField(blank=True, null=True)
+    end_time = models.DateField(blank=True, null=True)
+    current = models.BooleanField(default=False)
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -72,6 +73,7 @@ class Experience(Language):
     location = models.CharField(max_length=100, blank=True, null=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
+    current = models.BooleanField(default=False)
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -85,6 +87,7 @@ class Project(Language):
     location = models.CharField(max_length=100, blank=True, null=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
+    current = models.BooleanField(default=False)
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):

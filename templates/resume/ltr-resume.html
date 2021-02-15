@@ -7,7 +7,7 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
         <link rel="stylesheet" type="text/css" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}" />
-        <link rel="stylesheet" type="text/css" href="{% static 'resume/css/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'resume/css/style-ltr.css' %}" />
     </head>
 
     <body lang="en">
@@ -75,7 +75,7 @@
         <section id="main">
             <header id="title">
                 <h1>{{ information.full_name }}</h1>
-                <span class="subtitle">{{ information.quote }}</span>
+                {% if information.quote %}<span class="subtitle">{{ information.quote }}</span>{% endif %}
             </header>
             <!-- Experiences -->
             <section class="main-block">
@@ -86,7 +86,7 @@
                 {% for experience in experiences %}
                 <section class="blocks">
                     <div class="date">
-                        <span>{{ experience.end_date|date:'M Y' }}</span><span>{{ experience.start_date|date:'M Y' }}</span>
+                        <span>{% if experience.current %}current{% else %}{{ experience.end_date|date:'M Y' }}{% endif %}</span><span>{{ experience.start_date|date:'M Y' }}</span>
                     </div>
                     <div class="decorator"></div>
                     <div class="details">
@@ -113,7 +113,7 @@
                 {% for project in projects %}
                 <section class="blocks">
                     <div class="date">
-                        <span>{{ project.end_date|date:'M Y' }}</span><span>{{ project.start_date|date:'M Y' }}</span>
+                        <span>{% if project.current %}current{% else %}{{ project.end_date|date:'M Y' }}{% endif %}</span><span>{{ project.start_date|date:'M Y' }}</span>
                     </div>
                     <div class="decorator no-border"></div>
                     <div class="details">
@@ -138,7 +138,7 @@
                 {% for education in educations %}
                 <section class="blocks">
                     <div class="date">
-                        <span>{{ education.end_time|date:'M Y' }}</span><span>{{ education.begin_time|date:'M Y' }}</span>
+                        <span>{% if education.current %}current{% else %}{{ education.end_time|date:'M Y' }}{% endif %}</span><span>{{ education.begin_time|date:'M Y' }}</span>
                     </div>
                     <div class="decorator"></div>
                     <div class="details">
@@ -154,7 +154,7 @@
                 <!-- Certificate -->
                 <section class="blocks">
                     <div class="date"></div>
-                    <div class="decorator"></div>
+                    <div class="decorator no-border"></div>
                     <div class="details">
                         <header>
                             <h3>Massive Online Course (selective list)</h3>
