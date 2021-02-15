@@ -1,0 +1,5 @@
+asgiref==3.3.1
+Django==3.1.6
+django-summernote==0.8.11.6
+pytz==2021.1
+sqlparse==0.4.1
