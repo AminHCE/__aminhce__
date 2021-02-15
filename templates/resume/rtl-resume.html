@@ -1,4 +1,5 @@
 {% load static %}
+{% load persian_date_template_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +91,7 @@
                 {% for experience in experiences %}
                 <section class="blocks">
                     <div class="date">
-                        <span>{{ experience.end_date|date:'M Y' }}</span><span>{{ experience.start_date|date:'M Y' }}</span>
+                        <span>{% if experience.current %}تا امروز{% else %}{{ experience.end_date|pdate }}{% endif %}</span><span>{{ experience.start_date|pdate }}</span>
                     </div>
                     <div class="decorator"></div>
                     <div class="details">
@@ -117,7 +118,7 @@
                 {% for project in projects %}
                 <section class="blocks">
                     <div class="date">
-                        <span>{{ project.end_date|date:'M Y' }}</span><span>{{ project.start_date|date:'M Y' }}</span>
+                        <span>{% if project.current %}تا امروز{% else %}{{ project.end_date|pdate }}{% endif %}</span><span>{{ project.start_date|pdate }}</span>
                     </div>
                     <div class="decorator no-border"></div>
                     <div class="details">
@@ -142,7 +143,7 @@
                 {% for education in educations %}
                 <section class="blocks">
                     <div class="date">
-                        <span>{{ education.end_time|date:'M Y' }}</span><span>{{ education.begin_time|date:'M Y' }}</span>
+                        <span>{% if education.current %}تا امروز{% else %}{{ education.end_time|pdate }}{% endif %}</span><span>{{ education.begin_time|pdate }}</span>
                     </div>
                     <div class="decorator"></div>
                     <div class="details">
@@ -158,7 +159,7 @@
                 <!-- Certificate -->
                 <section class="blocks">
                     <div class="date"></div>
-                    <div class="decorator"></div>
+                    <div class="decorator no-border"></div>
                     <div class="details">
                         <header>
                             <h3>مدارک و دوره‌ها (لیست انتخابی)</h3>

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import math
 from typing import Optional
+from datetime import datetime, date
 
 import pytz
 
@@ -13,8 +15,7 @@ GREGORIAN_WEEKDAYS = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "F
 JALALI_EPOCH = 1948320.5
 JALALI_WEEKDAYS = [u"یکشنبه", u"دوشنبه", u"سه شنبه", u"چهارشنبه", u"پنجشنبه", u"جمعه", u"شنبه"]
 MONTH_NAMES = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند']
-
-import math
+SHORT_MONTH_NAMES = ['فرو', 'ارد', 'خرد', 'تیر', 'امر', 'شهر', 'مهر', 'آبا', 'آذر', 'دی', 'بهم', 'اسف']
 
 
 class Calverter:
@@ -79,7 +80,7 @@ class Calverter:
         return ((year % 4) == 0) and (not (((year % 100) == 0) and ((year % 400) != 0)))
 
     def gregorian_to_jd(self, year, month, day):
-        "Determine Julian day number from Gregorian calendar date"
+        """Determine Julian day number from Gregorian calendar date"""
 
         tm = 0 if month <= 2 else (-1 if self.leap_gregorian(year) else -2)
 
@@ -213,9 +214,6 @@ class Calverter:
         return year, month, day
 
 
-from datetime import datetime, date
-
-
 def jalali_to_gregorian(dat_str, sep=''):
     """
     Gets date in (char(8)) (or / delimited) (or char(10) / delimited)
@@ -307,7 +305,7 @@ def gregorian_to_jalaliyearmonth(date, sep='/'):
     dat_tuple = cal.jd_to_jalali(jd)
     year = str(dat_tuple[0]).rjust(4, '0')
     month_num = int(str(dat_tuple[1]))
-    month = MONTH_NAMES[month_num - 1]
+    month = SHORT_MONTH_NAMES[month_num - 1]
     return month + " " + year
 
 
