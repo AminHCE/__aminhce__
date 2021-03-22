@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_summernote',
+    'import_export',
 
     'applications.resume.apps.ResumeConfig',
     'applications.utils',
