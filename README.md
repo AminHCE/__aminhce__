@@ -1,6 +1,6 @@
 # AminHCE resume generator
 
-*__AminHCE__* is my own website repository. This website will complite as soon as posible. For now this website can collect resume information and show them in page witch is print friendly. This website work with two LTR and RTL page design.
+*__AminHCE__* is my own website repository. This website will complete as soon as possible. For now this website can collect resume information and show them in page witch is print friendly. This website work with two LTR and RTL page design.
 
 ![Screenshot of generated resume](https://user-images.githubusercontent.com/30463764/107969007-5d07d680-6fc4-11eb-93bf-e38cb89511b9.png)
 
