@@ -50,6 +50,11 @@ h1, h2, h3{
   color: #000;
 }
 
+a{
+  color: #444444;
+  text-decoration: none;
+}
+
 li{
   list-style-type: none;
 }

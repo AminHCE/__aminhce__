@@ -18,28 +18,46 @@
                 </h1>
                 <ul>
                 {% if information.website %}
-                    <li><i class="fa fa-globe"></i> {{ information.website }}</li>
+                    <li>
+                        <i class="fa fa-globe"></i>
+                        <a href="{{ information.website }}" target="_blank">{{ information.website }}</a>
+                    </li>
                 {% endif %}
                 {% if information.email %}
                     <li><i class="fa fa-envelope"></i> {{ information.email }}</li>
                 {% endif %}
                 {% if information.phone %}
-                    <li><i class="fa fa-phone"></i> {{ information.phone }}</li>
+                    <li>
+                        <i class="fa fa-phone"></i>
+                        <a href="tel:{{ information.phone }}">{{ information.phone }}</a>
+                    </li>
                 {% endif %}
                 {% if information.address %}
                     <li><i class="fa fa-map-pin"></i> {{ information.address }}</li>
                 {% endif %}
                 {% if information.github %}
-                    <li><i class="fa fa-github"></i> {{ information.github }}</li>
+                    <li>
+                        <i class="fa fa-github"></i>
+                        <a href="{{ information.github }}" target="_blank">{{ information.github }}</a>
+                    </li>
                 {% endif %}
                 {% if information.linkedin %}
-                    <li><i class="fa fa-linkedin"></i> {{ information.linkedin }}</li>
+                    <li>
+                        <i class="fa fa-linkedin"></i>
+                        <a href="{{ information.linkedin }}" target="_blank">{{ information.linkedin }}</a>
+                    </li>
                 {% endif %}
                 {% if information.twitter %}
-                    <li><i class="fa fa-twitter"></i> {{ information.twitter }}</li>
+                    <li>
+                        <i class="fa fa-twitter"></i>
+                        <a href="{{ information.twitter }}" target="_blank">{{ information.twitter }}</a>
+                    </li>
                 {% endif %}
                 {% if information.instagram %}
-                    <li><i class="fa fa-instagram"></i> {{ information.instagram }}</li>
+                    <li>
+                        <i class="fa fa-instagram"></i>
+                        <a href="{{ information.instagram }}" target="_blank">{{ information.instagram }}</a>
+                    </li>
                 {% endif %}
                 </ul>
             </div>
@@ -69,7 +87,8 @@
                 {% endfor %}
             </div>
             <div class="side-block" id="disclaimer">
-                This r&eacute;sum&eacute; created by aminhce <code>github.com/AminHCE</code>
+                This r&eacute;sum&eacute; created by aminhce
+                <a href="{{ information.github }}" target="_blank"><code>github.com/AminHCE</code></a>
             </div>
         </aside>
         <section id="main">
@@ -96,7 +115,11 @@
                     <div class="details">
                         <header>
                             <h3>{{ experience.project_name }}</h3>
-                            <span class="place">{{ experience.company_name }}</span>
+                            <span class="place">
+                                {% if experience.company_website %}
+                                <a href="{{ experience.company_website }}" target="_blank">{{ experience.company_name }}</a>
+                                {% endif %}
+                            </span>
                             {% if experience.location %}<span class="location">({{ experience.location }})</span>{% endif %}
                         </header>
                         <div>
