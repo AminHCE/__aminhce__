@@ -1,20 +1,35 @@
+import json
 import os
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+# JSON-based secrets module
+with open("config/settings/secrets.json") as f:
+    secrets_file = json.loads(f.read())
+
+
+def get_secret(setting, secrets=secrets_file):
+    """Get the secret variable or return explicit exception."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = 'Set the {0} environment variable'.format(setting)
+        raise ImproperlyConfigured(error_msg)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's7^i=dt0s$!do@4&!h9=veny@h_p06me23_vb)*m7u0dyfyu5i'
+SECRET_KEY = get_secret('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['aminhce.dev', '185.8.174.204']
 
 
 # Application definition
@@ -68,8 +83,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': get_secret('DATABASES_ENGINE'),
+        'NAME': get_secret('DATABASES_NAME'),
+        'USER': get_secret('DATABASES_USER'),
+        'PASSWORD': get_secret('DATABASES_PASSWORD'),
+        'HOST': get_secret('DATABASES_HOST'),
+        'PORT': get_secret('DATABASES_PORT'),
     }
 }
 
