@@ -131,9 +131,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'public_www/static'),
-)
+MEDIA_URL = '/media/'
 
 X_FRAME_OPTIONS = 'ALLOWALL'
 XS_SHARING_ALLOWED_METHODS = ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE']
