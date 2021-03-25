@@ -23,6 +23,9 @@ class Skill(models.Model):
     sub_name = models.CharField(max_length=50, blank=True, null=True)
     rate = models.IntegerField(blank=True, null=True)
 
+    class Meta:
+        ordering = ("id",)
+
     def __str__(self):
         return self.name
 
@@ -31,11 +34,11 @@ class Group(models.Model):
     title = models.CharField(max_length=50)
     skills = models.ManyToManyField(Skill, blank=True)
 
-    def __str__(self):
-        return self.title
-
     class Meta:
         ordering = ("id",)
+
+    def __str__(self):
+        return self.title
 
 
 class Link(Language):
