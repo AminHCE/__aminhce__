@@ -1,0 +1,48 @@
+	body{background-color:#000;}
+	pre{margin:0; font-family: monospace; font-size: 18px; text-align: left; color: #c0c0c0}
+	pre span.bold{font-family: monospace; font-size: 18px; font-weight: bold; text-align: left; color: #c0c0c0}
+	pre span.a:hover{font-family: monospace; font-size: 18px; font-weight: normal; text-align: left; color: #0f0}
+	pre span.b:hover{font-family: monospace; font-size: 18px; font-weight: normal; text-align: left; color: #ff0}
+	pre span.c:hover{font-family: monospace; font-size: 18px; font-weight: normal; text-align: left; color: #f00}
+	pre span.d:hover{font-family: monospace; font-size: 18px; font-weight: normal; text-align: left; color: #f0f}
+	pre span.e:hover{font-family: monospace; font-size: 18px; font-weight: normal; text-align: left; color: #0ff}
+	pre span.f:hover{font-family: monospace; font-size: 18px; font-weight: normal; text-align: left; color: #077}
+
+	/*hover edu*/
+	.hoveredu { color: #0f0; }
+
+	.gotop{position:fixed; width:50px; margin: 25px; bottom:0; left:0; z-index:999; text-align:right;}
+	.gotop a{font-family: monospace; font-size: 18px; text-decoration: none; text-align: left; background-color: #c0c0c0; color: #c0c0c0}
+	.gotop a:hover{font-family: monospace; font-size: 18px; text-decoration: none; text-align: left; background-color: #000; color: #000}
+	.desktop{margin-left: auto; margin-right: auto; margin-top:10%; width:720px; background-color:#000}
+	.logo{margin:0; background-color:#000}
+	.logo p{font-family: monospace; font-size: 18px; text-align: left; color: #c0c0c0}
+	.logo p span{font-family: monospace; font-size: 18px; font-weight: bold; text-align: left; color: #c0c0c0}
+	.logo p span.a{font-family: monospace; font-size: 18px; font-weight: bold; text-align: left; background-color: #0f0; color: #c0c0c0}
+	.logo a{font-family: monospace; font-size: 18px; text-decoration: none; text-align: left; color: #c0c0c0}
+	.logo a:hover{font-family: monospace; font-size: 18px; text-decoration: none; text-align: left; background-color: #c0c0c0; color: #000}
+	.mobile_device_480px{display: none;}
+
+	.button{
+	background-color: #000;
+    border: none;
+    color: #c0c0c0;
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;}
+	.button:hover{background-color: #c0c0c0; color: #000}
+
+
+	/* if mobile device max width 480px */
+	@media (max-width: 1200px) {
+		body{background-color:#800000;}
+		pre{margin:0; font-family: monospace; font-size: 18px; text-align: left; color: #c0c0c0}
+		pre span{font-family: monospace; font-size: 18px; font-weight: bold; text-align: left; color: #c0c0c0}
+		.mobile_device_480px{ max-width:75%; margin: 10% auto; background-color:#800000; display: block;}
+		.logo{margin:0; background-color:#800000;}
+		.desktop{display: none;}
+   }
