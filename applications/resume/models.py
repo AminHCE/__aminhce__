@@ -34,6 +34,9 @@ class Group(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ("id",)
+
 
 class Link(Language):
     title = models.CharField(max_length=50)
