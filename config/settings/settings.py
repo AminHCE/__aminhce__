@@ -29,7 +29,7 @@ SECRET_KEY = get_secret('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['aminhce.dev', '185.8.174.204']
+ALLOWED_HOSTS = ['aminhce.dev', '185.8.174.204', '192.168.0.128']
 
 
 # Application definition
