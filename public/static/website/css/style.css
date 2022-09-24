@@ -1,0 +1,140 @@
+:root {
+    --bg: #211D1B;
+    --command: #efefef;
+    --hostname: #4bff38;
+    --text-secondry: #519975;
+    --error: #f00;
+}
+
+body {
+    margin: 0;
+    padding: 15px 20px;
+    min-height: 99%;
+    width: 100%;
+    min-width: 550px;
+    color: var(--command);
+    background: var(--bg);
+    font-family: cursor, monospace;
+    overflow-x: hidden;
+}
+::selection {
+    color: #211830;
+    background-color: #519975;
+}
+::-moz-selection {
+    color: #211830;
+    background-color: #519975;
+}
+textarea {
+    left: -1000px;
+    position: absolute;
+}
+b {
+    font-weight: bold;
+    text-decoration: underline;
+}
+.cursor {
+    font-size: 12px;
+    color: grey;
+    background-color: grey;
+    position: relative;
+    opacity: 1;
+    height: 1.5em;
+    width: 10px;
+    max-width: 10px;
+    transform: translateY(4px);
+    overflow: hidden;
+    text-indent: -5px;
+    display: inline-block;
+    text-decoration: blink;
+    animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+    40% {
+        opacity: 0;
+    }
+}
+#command {
+    cursor: text;
+    height: 50px;
+    color: var(--command);
+}
+#liner {
+    line-height: 1.3em;
+    margin-top: -2px;
+    animation: show 0.5s ease forwards;
+    animation-delay: 1.2s;
+    opacity: 0;
+}
+#liner::before {
+    color: var(--hostname);
+    content: "guest@aminhce.dev:~$";
+}
+#liner.password::before {
+    content: "Password:";
+}
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Cursor End */
+p {
+    display: block;
+    line-height: 1.3em;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    animation: typing 0.5s steps(30, end);
+}
+.no-animation {
+    animation: typing 0 steps(30, end);
+}
+/*.margin {*/
+/*    margin-left: 20px;*/
+/*}*/
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+.index {
+    color: #DCDCCC;
+}
+.hostname {
+    color: var(--hostname);
+}
+.color2 {
+    color: var(--command);
+}
+
+.command {
+    color: var(--command);
+}
+.error {
+    color: var(--error);
+}
+.white {
+    color: #fff;
+}
+.inherit,
+a {
+    color: var(--command);
+}
+a {
+    text-decoration: inherit;
+}
+a:hover {
+    background: var(--command);
+    color: var(--bg);
+}
+a:focus {
+    outline: 0;
+}

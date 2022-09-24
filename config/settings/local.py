@@ -11,12 +11,12 @@ DEBUG = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'public_www/static'),
+    os.path.join(BASE_DIR, 'public/static'),
 )
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'public_www/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media')
 
 SITE_ADDRESS = 'http://localhost:8000'
 
