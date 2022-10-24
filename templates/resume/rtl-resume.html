@@ -25,7 +25,7 @@
                     <li><i class="fa fa-envelope"></i> {{ information.email }}</li>
                 {% endif %}
                 {% if information.phone %}
-                    <li s><i class="fa fa-phone"></i> {{ information.phone }}</li>
+                    <li><i class="fa fa-phone"></i> {{ information.phone }}</li>
                 {% endif %}
                 {% if information.address %}
                     <li><i class="fa fa-map-pin"></i> {{ information.address }}</li>
@@ -62,7 +62,7 @@
                         <div class="concise">
                             <ul>
                             {% for skill in g.skills.all %}
-                            <li>{{ skill.name }}</li>
+                                <li>{{ skill.name }} {% if skill.sub_name %}<span>{{ skill.sub_name }}</span>{% endif %}</li>
                             {% endfor %}
                         </ul>
                         </div>
@@ -96,8 +96,8 @@
                     <div class="decorator"></div>
                     <div class="details">
                         <header>
-                            <h3>{{ experience.project_name }}</h3>
-                            <span class="place">{{ experience.company_name }}</span>
+                            <h3>{% if experience.company_website %}<a href="{{ experience.company_website }}">{% endif %}{{ experience.company_name }}{% if experience.company_website %}</a>{% endif %}</h3>
+                            <span class="place">{{ experience.project_name }}</span>
                             {% if experience.location %}<span class="location">({{ experience.location }})</span>{% endif %}
                         </header>
                         <div>

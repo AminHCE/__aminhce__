@@ -22,9 +22,10 @@ class Skill(models.Model):
     name = models.CharField(max_length=50)
     sub_name = models.CharField(max_length=50, blank=True, null=True)
     rate = models.IntegerField(blank=True, null=True)
+    order = models.SmallIntegerField(default=0)
 
     class Meta:
-        ordering = ("id",)
+        ordering = ('order', 'id')
 
     def __str__(self):
         return self.name
