@@ -3,179 +3,184 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>{{ information.full_name }}</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-        <link rel="stylesheet" type="text/css" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}" />
-        <link rel="stylesheet" type="text/css" href="{% static 'resume/css/style-rtl.css' %}" />
-    </head>
+<head>
+    <title>{{ information.full_name }}</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'resume/css/style-rtl.css' %}" />
+</head>
 
-    <body lang="fa">
-        <aside id="sidebar">
-            <div class="side-block" id="contact">
-                <h1>
-                    اطلاعات تماس
-                </h1>
-                <ul>
-                {% if information.website %}
-                    <li><i class="fa fa-globe"></i> {{ information.website }}</li>
-                {% endif %}
-                {% if information.email %}
-                    <li><i class="fa fa-envelope"></i> {{ information.email }}</li>
-                {% endif %}
-                {% if information.phone %}
-                    <li><i class="fa fa-phone"></i> {{ information.phone }}</li>
-                {% endif %}
-                {% if information.address %}
-                    <li><i class="fa fa-map-pin"></i> {{ information.address }}</li>
-                {% endif %}
-                {% if information.github %}
-                    <li><i class="fa fa-github"></i> {{ information.github }}</li>
-                {% endif %}
-                {% if information.linkedin %}
-                    <li><i class="fa fa-linkedin"></i> {{ information.linkedin }}</li>
-                {% endif %}
-                {% if information.twitter %}
-                    <li><i class="fa fa-twitter"></i> {{ information.twitter }}</li>
-                {% endif %}
-                {% if information.instagram %}
-                    <li><i class="fa fa-instagram"></i> {{ information.instagram }}</li>
-                {% endif %}
-                </ul>
-            </div>
-
-            {% if information.about_me %}
-            <div class="side-block" id="contact">
-                <h1>
-                    درباره من
-                </h1>
-                <div>{{ information.about_me|safe }}</div>
-            </div>
+<body lang="fa">
+    <aside id="sidebar">
+        <div class="side-block" id="contact">
+            <h1>
+                اطلاعات تماس
+            </h1>
+            <ul>
+            {% if information.website %}
+                <li><i class="fa fa-globe"></i> <a href="{{ information.website }}">{{ information.website }}</a></li>
             {% endif %}
+            {% if information.email %}
+                <li><i class="fa fa-envelope"></i> <a href="mailto:{{ information.email }}">{{ information.email }}</a></li>
+            {% endif %}
+            {% if information.phone %}
+                <li class="ltr"><a href="tel:{{ information.phone }}" >{{ information.phone }}</a> <i class="fa fa-phone"></i></li>
+            {% endif %}
+            {% if information.address %}
+                <li><i class="fa fa-map-pin"></i> {{ information.address }}</li>
+            {% endif %}
+            {% if information.github %}
+                <li><i class="fa fa-github"></i> <a href="{{ information.github }}">{{ information.github }}</a></li>
+            {% endif %}
+            {% if information.linkedin %}
+                <li><i class="fa fa-linkedin"></i> <a href="{{ information.linkedin }}">{{ information.linkedin }}</a></li>
+            {% endif %}
+            {% if information.twitter %}
+                <li><i class="fa fa-twitter"></i> <a href="{{ information.twitter }}">{{ information.twitter }}</a></li>
+            {% endif %}
+            {% if information.instagram %}
+                <li><i class="fa fa-instagram"></i> <a href="{{ information.instagram }}">{{ information.instagram }}</a></li>
+            {% endif %}
+            </ul>
+        </div>
 
-            <div class="side-block concise" id="skills">
-                <h1>مهارت‌ها</h1>
-                {% for g in group %}
-                    <div class="skill-details">
-                        <h4>{{ g.title }}</h4>
-                        <div class="concise">
-                            <ul>
-                            {% for skill in g.skills.all %}
-                                <li>{{ skill.name }} {% if skill.sub_name %}<span>{{ skill.sub_name }}</span>{% endif %}</li>
+        {% if information.about_me %}
+        <div class="side-block" id="contact">
+            <h1>
+                درباره من
+            </h1>
+            <div>{{ information.about_me|safe }}</div>
+        </div>
+        {% endif %}
+
+        <div class="side-block concise" id="skills">
+            <h1>مهارت‌ها</h1>
+            {% for g in group %}
+                <div class="skill-details">
+                    <h4>{{ g.title }}</h4>
+                    <div class="concise">
+                        <ul>
+                        {% for skill in g.skills.all %}
+                            <li>{{ skill.name }} {% if skill.sub_name %}<span>{{ skill.sub_name }}</span>{% endif %}</li>
+                        {% endfor %}
+                    </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="side-block" id="disclaimer">
+            {% if modify %}<p class="modify">Last modify: <span class="time">{{ modify }}</span></p>{% endif %}
+            <p>This resume created by aminhce <code>github.com/AminHCE</code></p>
+        </div>
+    </aside>
+    <section id="main">
+        <header id="title">
+            <h1>{{ information.full_name }}
+                <button onclick="window.print();" class="print-button">
+                    <i class="fa fa-print"></i>
+                </button>
+                <button class="more-button">
+                    <i id="more-icon" class="fa fa-folder-open-o"></i>
+                </button>
+            </h1>
+            {% if information.quote %}<span class="subtitle">{{ information.quote }}</span>{% endif %}
+        </header>
+        <!-- Experiences -->
+        <section class="main-block">
+            <h2>
+                <i class="fa fa-suitcase"></i> سابقه کاری
+            </h2>
+
+            {% for experience in experiences %}
+            <section class="blocks">
+                <div class="date">
+                    <span>{% if experience.current %}تا امروز{% else %}{{ experience.end_date|pdate }}{% endif %}</span><span>{{ experience.start_date|pdate }}</span>
+                </div>
+                <div class="decorator"></div>
+                <div class="details">
+                    <header>
+                        <h3>{% if experience.company_website %}<a href="{{ experience.company_website }}">{% endif %}{{ experience.company_name }}{% if experience.company_website %}</a>{% endif %}</h3>
+                        <span class="place">{{ experience.project_name }}</span>
+                        {% if experience.location %}<span class="location">({{ experience.location }})</span>{% endif %}
+                    </header>
+                    <div>
+                        {{ experience.description|safe }}
+                    </div>
+                </div>
+            </section>
+            {% endfor %}
+        </section>
+        <!-- /Experiences -->
+
+        <!-- Selected Projects -->
+        <section class="main-block no-border">
+            <h2>
+                <i class="fa fa-folder-open"></i> پروژه‌های انتخابی
+            </h2>
+
+            {% for project in projects %}
+            <section class="blocks">
+                <div class="date">
+                    <span>{% if project.current %}تا امروز{% else %}{{ project.end_date|pdate }}{% endif %}</span><span>{{ project.start_date|pdate }}</span>
+                </div>
+                <div class="decorator no-border"></div>
+                <div class="details">
+                    <header>
+                        <h3>{{ project.project_name }}</h3>
+                        <span class="place">{{ project.subtitle }}</span>
+                        {% if project.location %}<span class="location">({{ project.location }})</span>{% endif %}
+                    </header>
+                    <div>
+                        {{ project.description|safe }}
+                    </div>
+                </div>
+            </section>
+            {% endfor %}
+        </section>
+        <!-- /Selected Projects -->
+        <!-- Education -->
+        <section class="main-block concise">
+            <h2>
+                <i class="fa fa-graduation-cap"></i> تحصیلات
+            </h2>
+            {% for education in educations %}
+            <section class="blocks">
+                <div class="date">
+                    <span>{% if education.current %}تا امروز{% else %}{{ education.end_time|pdate }}{% endif %}</span><span>{{ education.begin_time|pdate }}</span>
+                </div>
+                <div class="decorator"></div>
+                <div class="details">
+                    <header>
+                      <h3>{{ education.title }}</h3>
+                      <span class="place">{{ education.university }}</span>
+                    </header>
+                    <div>{{ education.description|safe }}</div>
+                </div>
+            </section>
+            {% endfor %}
+            <!-- Certificate -->
+            <section class="blocks">
+                <div class="date"></div>
+                <div class="decorator no-border"></div>
+                <div class="details">
+                    <header>
+                        <h3>مدارک و دوره‌ها (لیست انتخابی)</h3>
+                    </header>
+                    <div class="concise">
+                        <ul>
+                            {% for certificate in certificates %}
+                            <li>{{ certificate.title }}<br>({{ certificate.institute }})</li>
                             {% endfor %}
                         </ul>
-                        </div>
                     </div>
-                {% endfor %}
-            </div>
-            <div class="side-block" id="disclaimer">
-                This r&eacute;sum&eacute; created by aminhce <code>github.com/AminHCE</code>
-            </div>
-        </aside>
-        <section id="main">
-            <header id="title">
-                <h1>{{ information.full_name }}
-                    <button onclick="window.print();" class="print-button">
-                        <i class="fa fa-print"></i>
-                    </button>
-                </h1>
-                {% if information.quote %}<span class="subtitle">{{ information.quote }}</span>{% endif %}
-            </header>
-            <!-- Experiences -->
-            <section class="main-block">
-                <h2>
-                    <i class="fa fa-suitcase"></i> سابقه کاری
-                </h2>
-
-                {% for experience in experiences %}
-                <section class="blocks">
-                    <div class="date">
-                        <span>{% if experience.current %}تا امروز{% else %}{{ experience.end_date|pdate }}{% endif %}</span><span>{{ experience.start_date|pdate }}</span>
-                    </div>
-                    <div class="decorator"></div>
-                    <div class="details">
-                        <header>
-                            <h3>{% if experience.company_website %}<a href="{{ experience.company_website }}">{% endif %}{{ experience.company_name }}{% if experience.company_website %}</a>{% endif %}</h3>
-                            <span class="place">{{ experience.project_name }}</span>
-                            {% if experience.location %}<span class="location">({{ experience.location }})</span>{% endif %}
-                        </header>
-                        <div>
-                            {{ experience.description|safe }}
-                        </div>
-                    </div>
-                </section>
-                {% endfor %}
+                </div>
             </section>
-            <!-- /Experiences -->
-
-            <!-- Selected Projects -->
-            <section class="main-block no-border">
-                <h2>
-                    <i class="fa fa-folder-open"></i> پروژه‌های انتخابی
-                </h2>
-
-                {% for project in projects %}
-                <section class="blocks">
-                    <div class="date">
-                        <span>{% if project.current %}تا امروز{% else %}{{ project.end_date|pdate }}{% endif %}</span><span>{{ project.start_date|pdate }}</span>
-                    </div>
-                    <div class="decorator no-border"></div>
-                    <div class="details">
-                        <header>
-                            <h3>{{ project.project_name }}</h3>
-                            <span class="place">{{ project.subtitle }}</span>
-                            {% if project.location %}<span class="location">({{ project.location }})</span>{% endif %}
-                        </header>
-                        <div>
-                            {{ project.description|safe }}
-                        </div>
-                    </div>
-                </section>
-                {% endfor %}
-            </section>
-            <!-- /Selected Projects -->
-            <!-- Education -->
-            <section class="main-block concise">
-                <h2>
-                    <i class="fa fa-graduation-cap"></i> تحصیلات
-                </h2>
-                {% for education in educations %}
-                <section class="blocks">
-                    <div class="date">
-                        <span>{% if education.current %}تا امروز{% else %}{{ education.end_time|pdate }}{% endif %}</span><span>{{ education.begin_time|pdate }}</span>
-                    </div>
-                    <div class="decorator"></div>
-                    <div class="details">
-                        <header>
-                          <h3>{{ education.title }}</h3>
-                          <span class="place">{{ education.university }}</span>
-{#                          <span class="location"></span>#}
-                        </header>
-                        <div>{{ education.description|safe }}</div>
-                    </div>
-                </section>
-                {% endfor %}
-                <!-- Certificate -->
-                <section class="blocks">
-                    <div class="date"></div>
-                    <div class="decorator no-border"></div>
-                    <div class="details">
-                        <header>
-                            <h3>مدارک و دوره‌ها (لیست انتخابی)</h3>
-                        </header>
-                        <div class="concise">
-                            <ul>
-                                {% for certificate in certificates %}
-                                <li>{{ certificate.title }}<br>({{ certificate.institute }})</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                <!-- /Certificate -->
-            </section>
-            <!-- /Education -->
+            <!-- /Certificate -->
         </section>
-    </body>
+        <!-- /Education -->
+    </section>
+    <script src="{% static 'resume/js/main.js' %}"></script>
+</body>
 </html>

@@ -1,3 +1,4 @@
+from django.contrib.admin.models import LogEntry
 from django.http import HttpResponse, Http404
 from django.template import loader
 
@@ -21,7 +22,11 @@ def resume_view(request, language):
     educations = Education.objects.filter(language=language_code).order_by('-begin_time')
     certificates = Certificate.objects.filter(language=language_code).order_by('-issue_date')
 
-    context = {'information': information, 'group': group, 'experiences': experiences, 'projects': projects,
-               'educations': educations, 'certificates': certificates}
+    log = LogEntry.objects.all().order_by('-action_time').first()
+
+    context = {
+        'information': information, 'group': group, 'experiences': experiences, 'projects': projects,
+        'educations': educations, 'certificates': certificates, 'modify': log.action_time.date()
+    }
 
     return HttpResponse(temp.render(context, request))

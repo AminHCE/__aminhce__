@@ -61,10 +61,18 @@ a{
   color: #222;
 }
 
+.ltr{
+  direction: ltr;
+}
+
+.hidden{
+  display: none;
+}
+
 #main{
   float: right;
   width: var(--main-width);
-  margin: 20mm 0 0 0;
+  margin: 20mm 0 15mm 0;
   padding: 0.25in 0.25in 0 0.25in;
   font-size: 7pt;
 }
@@ -425,10 +433,18 @@ a{
   bottom: var(--sidebar-horizontal-padding);
   left: var(--sidebar-horizontal-padding);
   font-size: 7.5pt;
-  font-style: italic;
   line-height: 1.1;
   text-align: left;
   color: #777;
+}
+
+#disclaimer .modify{
+  color: #777;
+}
+
+#disclaimer .time{
+  font-weight: bold;
+  color: #19939e;
 }
 
 #disclaimer code{
@@ -444,6 +460,12 @@ button.print-button {
   padding-left: 60px;
 }
 
+button.more-button {
+  all: unset;
+  float: left;
+  padding-left: 20px;
+}
+
 @media print {
   html {
     background-color: #ffffff;
@@ -455,5 +477,30 @@ button.print-button {
 
   button.print-button {
     display: none;
+  }
+
+  button.more-button {
+    display: none;
+  }
+  .print-30-mm{
+    padding-top: 30mm;
+  }
+  .print-40-mm{
+    padding-top: 40mm;
+  }
+  .print-50-mm{
+    padding-top: 50mm;
+  }
+  .print-60-mm{
+    padding-top: 60mm;
+  }
+  .print-70-mm{
+    padding-top: 70mm;
+  }
+  .print-80-mm{
+    padding-top: 80mm;
+  }
+  .print-90-mm{
+    padding-top: 90mm;
   }
 }
