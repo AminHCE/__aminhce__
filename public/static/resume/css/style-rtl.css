@@ -447,6 +447,18 @@ a{
   color: #19939e;
 }
 
+#disclaimer .title{
+  font-weight: bold;
+  font-size: 9pt;
+  color: #666;
+}
+
+#disclaimer .subtitle{
+  font-weight: lighter;
+  font-size: 6pt;
+  color: #777;
+}
+
 #disclaimer code{
   color: #19939e;
   font-family: "Source Code Pro";

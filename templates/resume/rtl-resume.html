@@ -65,14 +65,28 @@
                         {% for skill in g.skills.all %}
                             <li>{{ skill.name }} {% if skill.sub_name %}<span>{{ skill.sub_name }}</span>{% endif %}</li>
                         {% endfor %}
-                    </ul>
+                        </ul>
                     </div>
                 </div>
             {% endfor %}
         </div>
         <div class="side-block" id="disclaimer">
+            <p class="title">INTJ<br><span class="subtitle">MBTI Test</span></p>
+            <p class="title">R<sub>46</sub> I<sub>60</sub> A<sub>60</sub> S<sub>58</sub> E<sub>66</sub> C<sub>76</sub>
+                <br>
+                <span class="subtitle">Holland Test</span>
+            </p>
+            <p class="title">133<br><span class="subtitle">Ravan Test</span></p>
+            <p class="title">N<sub>42</sub> E<sub>73</sub> A<sub>65</sub> O<sub>72</sub> C<sub>77</sub>
+                <br>
+                <span class="subtitle">NEO Test</span>
+            </p>
             {% if modify %}<p class="modify">Last modify: <span class="time">{{ modify }}</span></p>{% endif %}
-            <p>This resume created by aminhce <code>github.com/AminHCE</code></p>
+            <p>This resume created by aminhce<br>
+                <a href="https://github.com/AminHCE/__aminhce__" target="_blank">
+                    <code>github.com/AminHCE</code>
+                </a>
+            </p>
         </div>
     </aside>
     <section id="main">

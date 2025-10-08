@@ -6,6 +6,7 @@
         <title>{{ information.full_name }}</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'resume/css/style-ltr.css' %}" />
     </head>
@@ -79,7 +80,7 @@
                         <div class="concise">
                             <ul>
                             {% for skill in g.skills.all %}
-                            <li>{{ skill.name }}</li>
+                            <li>{{ skill.name }} {% if skill.sub_name %}<span>{{ skill.sub_name }}</span>{% endif %}</li>
                             {% endfor %}
                         </ul>
                         </div>
@@ -87,8 +88,22 @@
                 {% endfor %}
             </div>
             <div class="side-block" id="disclaimer">
-                This r&eacute;sum&eacute; created by aminhce
-                <a href="{{ information.github }}" target="_blank"><code>github.com/AminHCE</code></a>
+                <p class="title">INTJ<br><span class="subtitle">MBTI Test</span></p>
+                <p class="title">R<sub>46</sub> I<sub>60</sub> A<sub>60</sub> S<sub>58</sub> E<sub>66</sub> C<sub>76</sub>
+                    <br>
+                    <span class="subtitle">Holland Test</span>
+                </p>
+                <p class="title">133<br><span class="subtitle">Ravan Test</span></p>
+                <p class="title">N<sub>42</sub> E<sub>73</sub> A<sub>65</sub> O<sub>72</sub> C<sub>77</sub>
+                    <br>
+                    <span class="subtitle">NEO Test</span>
+                </p>
+                {% if modify %}<p class="modify">Last modify: <span class="time">{{ modify }}</span></p>{% endif %}
+                <p>This resume created by aminhce<br>
+                    <a href="https://github.com/AminHCE/__aminhce__" target="_blank">
+                        <code>github.com/AminHCE</code>
+                    </a>
+                </p>
             </div>
         </aside>
         <section id="main">
@@ -96,6 +111,9 @@
                 <h1>{{ information.full_name }}
                     <button onclick="window.print();" class="print-button">
                         <i class="fa fa-print"></i>
+                    </button>
+                    <button class="more-button">
+                        <i id="more-icon" class="fa fa-folder-open-o"></i>
                     </button>
                 </h1>
                 {% if information.quote %}<span class="subtitle">{{ information.quote }}</span>{% endif %}
@@ -199,5 +217,6 @@
             </section>
             <!-- /Education -->
         </section>
+        <script src="{% static 'resume/js/main.js' %}"></script>
     </body>
 </html>
