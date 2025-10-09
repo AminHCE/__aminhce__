@@ -11,29 +11,29 @@ function setPrint(pageHeight) {
             element       = (elementOffset + elementHeight);
 
         if(element > newPageHeight){
-            if(newPageHeight - elementOffset < pageHeight * 0.025){
+            if(newPageHeight - elementOffset < pageHeight * 0.01){
                 $(this).addClass('print print-40-mm');
-                newPageHeight = newPageHeight + pageHeight
+                newPageHeight = newPageHeight + pageHeight * 1.155
+                $('body').height(newPageHeight)
+            } else if(newPageHeight - elementOffset < pageHeight * 0.02){
+                $(this).addClass('print print-50-mm');
+                newPageHeight = newPageHeight + pageHeight * 1.155
+                $('body').height(newPageHeight)
+            } else if(newPageHeight - elementOffset < pageHeight * 0.03){
+                $(this).addClass('print print-60-mm');
+                newPageHeight = newPageHeight + pageHeight * 1.155
+                $('body').height(newPageHeight)
+            } else if(newPageHeight - elementOffset < pageHeight * 0.04){
+                $(this).addClass('print print-70-mm');
+                newPageHeight = newPageHeight + pageHeight * 1.155
                 $('body').height(newPageHeight)
             } else if(newPageHeight - elementOffset < pageHeight * 0.05){
-                $(this).addClass('print print-50-mm');
-                newPageHeight = newPageHeight + pageHeight
-                $('body').height(newPageHeight)
-            } else if(newPageHeight - elementOffset < pageHeight * 0.075){
-                $(this).addClass('print print-60-mm');
-                newPageHeight = newPageHeight + pageHeight
-                $('body').height(newPageHeight)
-            } else if(newPageHeight - elementOffset < pageHeight * 0.1){
-                $(this).addClass('print print-70-mm');
-                newPageHeight = newPageHeight + pageHeight
-                $('body').height(newPageHeight)
-            } else if(newPageHeight - elementOffset < pageHeight * 0.125){
                 $(this).addClass('print print-80-mm');
-                newPageHeight = newPageHeight + pageHeight
+                newPageHeight = newPageHeight + pageHeight * 1.155
                 $('body').height(newPageHeight)
-            } else if(newPageHeight - elementOffset < pageHeight * 0.15){
+            } else if(newPageHeight - elementOffset < pageHeight * 0.06){
                 $(this).addClass('print print-90-mm');
-                newPageHeight = newPageHeight + pageHeight
+                newPageHeight = newPageHeight + pageHeight * 1.155
                 $('body').height(newPageHeight)
             }
             $('.blocks').each(function(){
@@ -42,29 +42,29 @@ function setPrint(pageHeight) {
                     block       = (blockHeight + blockOffset);
 
                 if(block > newPageHeight){
-                    if(newPageHeight - blockOffset < pageHeight * 0.025){
+                    if(newPageHeight - blockOffset < pageHeight * 0.01){
+                        $(this).addClass('print print-30-mm');
+                        newPageHeight = newPageHeight + pageHeight * 1.155
+                        $('body').height(newPageHeight)
+                    } else if(newPageHeight - blockOffset < pageHeight * 0.02){
+                        $(this).addClass('print print-30-mm');
+                        newPageHeight = newPageHeight + pageHeight * 1.155
+                        $('body').height(newPageHeight)
+                    } else if(newPageHeight - blockOffset < pageHeight * 0.03){
+                        $(this).addClass('print print-30-mm');
+                        newPageHeight = newPageHeight + pageHeight * 1.155
+                        $('body').height(newPageHeight)
+                    } else if(newPageHeight - blockOffset < pageHeight * 0.04){
                         $(this).addClass('print print-40-mm');
-                        newPageHeight = newPageHeight + pageHeight
+                        newPageHeight = newPageHeight + pageHeight * 1.155
                         $('body').height(newPageHeight)
                     } else if(newPageHeight - blockOffset < pageHeight * 0.05){
                         $(this).addClass('print print-50-mm');
-                        newPageHeight = newPageHeight + pageHeight
+                        newPageHeight = newPageHeight + pageHeight * 1.155
                         $('body').height(newPageHeight)
-                    } else if(newPageHeight - blockOffset < pageHeight * 0.075){
+                    } else if(newPageHeight - blockOffset < pageHeight * 0.06){
                         $(this).addClass('print print-60-mm');
-                        newPageHeight = newPageHeight + pageHeight
-                        $('body').height(newPageHeight)
-                    } else if(newPageHeight - blockOffset < pageHeight * 0.1){
-                        $(this).addClass('print print-70-mm');
-                        newPageHeight = newPageHeight + pageHeight
-                        $('body').height(newPageHeight)
-                    } else if(newPageHeight - blockOffset < pageHeight * 0.125){
-                        $(this).addClass('print print-80-mm');
-                        newPageHeight = newPageHeight + pageHeight
-                        $('body').height(newPageHeight)
-                    } else if(newPageHeight - blockOffset < pageHeight * 0.15){
-                        $(this).addClass('print print-90-mm');
-                        newPageHeight = newPageHeight + pageHeight
+                        newPageHeight = newPageHeight + pageHeight * 1.155
                         $('body').height(newPageHeight)
                     }
                 }

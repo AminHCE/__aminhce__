@@ -66,9 +66,10 @@ li{
 #main{
   float: left;
   width: var(--main-width);
-  margin: 20mm 0 15mm 0;
-  padding: 0.25in 0.25in 0 0.25in;
+  margin: 20mm 0 0 0;
+  padding: 0.25in 0.25in 15mm 0.25in;
   font-size: 7pt;
+  background-color: #ffffff;
 }
 
 #sidebar{
