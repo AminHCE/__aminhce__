@@ -84,10 +84,36 @@ else
     print_success "Docker is already installed"
 fi
 
+# Ensure user is in docker group and has access
+print_status "Setting up Docker permissions..."
+if ! groups $USER | grep -q docker; then
+    print_status "Adding user to docker group..."
+    sudo usermod -aG docker $USER
+fi
+
 # Restart Docker daemon to apply DNS configuration
 print_status "Restarting Docker daemon to apply DNS settings..."
 sudo systemctl restart docker
 sleep 5
+
+# Verify Docker access with automatic group activation
+print_status "Verifying Docker access..."
+if ! docker info > /dev/null 2>&1; then
+    print_status "Activating docker group permissions..."
+    # Use newgrp to activate docker group in current session
+    exec newgrp docker << 'EOF'
+# Continue script execution with docker group permissions
+echo "Docker group activated, continuing setup..."
+EOF
+fi
+
+# Final Docker access verification
+if docker info > /dev/null 2>&1; then
+    print_success "Docker access verified"
+else
+    print_error "Docker access still denied. Please check Docker installation."
+    exit 1
+fi
 
 # Step 3: Install Docker Compose if not already installed
 if ! command -v docker-compose &> /dev/null; then

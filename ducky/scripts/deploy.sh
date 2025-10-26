@@ -40,9 +40,28 @@ print_status "Deploying to $ENVIRONMENT environment..."
 
 cd "$(dirname "$0")/../$ENVIRONMENT"
 
-# Check if .env file exists
-if [ ! -f .env ]; then
-    print_error ".env file not found in $ENVIRONMENT directory"
+# Check Docker access and fix if needed
+print_status "Checking Docker access..."
+if ! docker info > /dev/null 2>&1; then
+    print_status "Docker access denied. Attempting to fix..."
+    
+    # Check if user is in docker group
+    if ! groups $USER | grep -q docker; then
+        print_status "Adding user to docker group..."
+        sudo usermod -aG docker $USER
+    fi
+    
+    # Try to activate docker group
+    print_status "Activating docker group permissions..."
+    exec newgrp docker << 'EOF'
+# Continue script execution with docker group permissions
+echo "Docker group activated, continuing deployment..."
+EOF
+fi
+
+# Verify Docker access
+if ! docker info > /dev/null 2>&1; then
+    print_error "Docker access still denied. Please check Docker installation."
     exit 1
 fi
 
