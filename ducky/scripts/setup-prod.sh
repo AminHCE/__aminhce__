@@ -56,7 +56,7 @@ sudo apt update && sudo apt upgrade -y
 print_status "Configuring DNS settings for Docker..."
 sudo tee /etc/systemd/resolved.conf > /dev/null <<EOF
 [Resolve]
-DNS=78.157.42.100 78.157.42.101
+DNS=178.22.122.100 185.51.200.2
 EOF
 
 # Restart systemd-resolved to apply DNS changes
@@ -66,7 +66,7 @@ sudo systemctl restart systemd-resolved
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json > /dev/null <<EOF
 {
-  "dns": ["78.157.42.100", "78.157.42.101"]
+  "dns": ["178.22.122.100", "185.51.200.2"]
 }
 EOF
 
