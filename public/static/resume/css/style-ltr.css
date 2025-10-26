@@ -50,6 +50,10 @@ h1, h2, h3{
   color: #000;
 }
 
+h4{
+  margin-bottom: 0;
+}
+
 a{
   color: #444444;
   text-decoration: none;

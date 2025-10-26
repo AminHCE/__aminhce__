@@ -52,6 +52,10 @@ h1, h2, h3{
   color: #222;
 }
 
+h4{
+  margin-bottom: 0;
+}
+
 li{
   list-style-type: none;
 }
