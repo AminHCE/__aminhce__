@@ -53,10 +53,9 @@ if ! docker info > /dev/null 2>&1; then
     
     # Try to activate docker group
     print_status "Activating docker group permissions..."
-    exec newgrp docker << 'EOF'
-# Continue script execution with docker group permissions
-echo "Docker group activated, continuing deployment..."
-EOF
+    print_warning "Please run: newgrp docker"
+    print_warning "Then run this script again: ./deploy.sh $ENVIRONMENT"
+    exit 0
 fi
 
 # Verify Docker access
@@ -64,6 +63,8 @@ if ! docker info > /dev/null 2>&1; then
     print_error "Docker access still denied. Please check Docker installation."
     exit 1
 fi
+
+print_success "Docker access verified"
 
 # Load environment variables
 source .env

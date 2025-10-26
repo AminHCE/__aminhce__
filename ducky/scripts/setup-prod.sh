@@ -96,24 +96,16 @@ print_status "Restarting Docker daemon to apply DNS settings..."
 sudo systemctl restart docker
 sleep 5
 
-# Verify Docker access with automatic group activation
+# Verify Docker access
 print_status "Verifying Docker access..."
 if ! docker info > /dev/null 2>&1; then
-    print_status "Activating docker group permissions..."
-    # Use newgrp to activate docker group in current session
-    exec newgrp docker << 'EOF'
-# Continue script execution with docker group permissions
-echo "Docker group activated, continuing setup..."
-EOF
+    print_warning "Docker access denied after group setup."
+    print_warning "Please run: newgrp docker"
+    print_warning "Then run this script again: ./setup-prod.sh"
+    exit 0
 fi
 
-# Final Docker access verification
-if docker info > /dev/null 2>&1; then
-    print_success "Docker access verified"
-else
-    print_error "Docker access still denied. Please check Docker installation."
-    exit 1
-fi
+print_success "Docker access verified"
 
 # Step 3: Install Docker Compose if not already installed
 if ! command -v docker-compose &> /dev/null; then
