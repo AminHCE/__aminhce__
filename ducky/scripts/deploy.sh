@@ -67,9 +67,14 @@ if [ "$ENVIRONMENT" = "prod" ]; then
     print_success "Backup created: $BACKUP_DIR/backup_$DATE"
 fi
 
-# Pull latest images
+# Pull latest images (with error handling)
 print_status "Pulling latest images..."
-docker compose pull
+if docker compose pull 2>/dev/null; then
+    print_success "Images pulled successfully"
+else
+    print_warning "Failed to pull images (using local images)"
+    print_status "Continuing with local images..."
+fi
 
 # Build application
 print_status "Building application..."
