@@ -52,6 +52,26 @@ print_status "Setting up production environment for domain: $DOMAIN_NAME"
 print_status "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
 
+# Step 1.5: Configure DNS for better Docker connectivity
+print_status "Configuring DNS settings for Docker..."
+sudo tee /etc/systemd/resolved.conf > /dev/null <<EOF
+[Resolve]
+DNS=78.157.42.100 78.157.42.101
+EOF
+
+# Restart systemd-resolved to apply DNS changes
+sudo systemctl restart systemd-resolved
+
+# Configure Docker daemon to use specific DNS
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json > /dev/null <<EOF
+{
+  "dns": ["78.157.42.100", "78.157.42.101"]
+}
+EOF
+
+print_success "DNS configured successfully"
+
 # Step 2: Install Docker if not already installed
 if ! command -v docker &> /dev/null; then
     print_status "Installing Docker..."
@@ -63,6 +83,11 @@ if ! command -v docker &> /dev/null; then
 else
     print_success "Docker is already installed"
 fi
+
+# Restart Docker daemon to apply DNS configuration
+print_status "Restarting Docker daemon to apply DNS settings..."
+sudo systemctl restart docker
+sleep 5
 
 # Step 3: Install Docker Compose if not already installed
 if ! command -v docker-compose &> /dev/null; then
@@ -106,6 +131,14 @@ fi
 # Step 9: Build and start services
 print_status "Building and starting Docker services..."
 cd $APP_DIR/ducky/prod
+
+# Test DNS connectivity
+print_status "Testing DNS connectivity..."
+if nslookup registry-1.docker.io > /dev/null 2>&1; then
+    print_success "DNS connectivity test passed"
+else
+    print_warning "DNS connectivity test failed, but continuing..."
+fi
 
 # Pull images
 docker compose pull

@@ -67,14 +67,35 @@ if [ "$ENVIRONMENT" = "prod" ]; then
     print_success "Backup created: $BACKUP_DIR/backup_$DATE"
 fi
 
-# Pull latest images (with error handling)
+# Pull latest images
 print_status "Pulling latest images..."
-if docker compose pull 2>/dev/null; then
-    print_success "Images pulled successfully"
+
+# Test DNS connectivity first
+if nslookup registry-1.docker.io > /dev/null 2>&1; then
+    print_success "DNS connectivity verified"
 else
-    print_warning "Failed to pull images (using local images)"
-    print_status "Continuing with local images..."
+    print_warning "DNS connectivity issue detected. Attempting to pull images anyway..."
 fi
+
+# Retry logic for pulling images
+max_retries=3
+retry_count=0
+
+while [ $retry_count -lt $max_retries ]; do
+    if docker compose pull; then
+        print_success "Images pulled successfully"
+        break
+    else
+        retry_count=$((retry_count + 1))
+        if [ $retry_count -lt $max_retries ]; then
+            print_warning "Pull failed, retrying in 10 seconds... (attempt $retry_count/$max_retries)"
+            sleep 10
+        else
+            print_error "Failed to pull images after $max_retries attempts"
+            print_warning "Continuing with local images..."
+        fi
+    fi
+done
 
 # Build application
 print_status "Building application..."
