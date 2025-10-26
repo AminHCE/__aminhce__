@@ -48,9 +48,16 @@ source "$(dirname "$0")/../prod/.env"
 
 print_status "Setting up production environment for domain: $DOMAIN_NAME"
 
-# Step 1: Update system packages
+# Step 1: Update system packages and sync time
 print_status "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
+
+# Sync system time to prevent certificate issues
+print_status "Synchronizing system time..."
+sudo apt install -y ntp
+sudo systemctl enable ntp
+sudo systemctl start ntp
+sudo ntpdate -s time.nist.gov || sudo chrony sources -v || true
 
 # Step 1.5: Configure DNS for better Docker connectivity
 print_status "Configuring DNS settings for Docker..."
@@ -66,7 +73,14 @@ sudo systemctl restart systemd-resolved
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json > /dev/null <<EOF
 {
-  "dns": ["178.22.122.100", "185.51.200.2"]
+  "dns": ["178.22.122.100", "185.51.200.2"],
+  "insecure-registries": [],
+  "registry-mirrors": [],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  }
 }
 EOF
 
@@ -106,6 +120,13 @@ if ! docker info > /dev/null 2>&1; then
 fi
 
 print_success "Docker access verified"
+
+# Clear Docker certificate cache and update certificates
+print_status "Updating Docker certificates..."
+sudo apt install -y ca-certificates
+sudo update-ca-certificates
+sudo systemctl restart docker
+sleep 5
 
 # Step 3: Install Docker Compose if not already installed
 if ! command -v docker-compose &> /dev/null; then
