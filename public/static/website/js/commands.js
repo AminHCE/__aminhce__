@@ -42,10 +42,16 @@ whois = [
     "Country:        IR",
     "RegDate:        2018-02-06",
     "Updated:        2021-09-23",
-    "Comment:        Hi 👋 my name is Amin Hemmati and I love programming, because there's NO limit between 0 and 1.",
-    "                I'm interested in Computer and Technology. I work with Python and Django, also work with",
-    "                Linux servers and Cisco machine",
-    "                Have fun :D",
+    "Comment:        Hi 👋 I'm Amin Hemmati — a backend developer who loves turning ideas into real, scalable software.",
+    "                I believe there's **no limit between 0 and 1**, and that's exactly why I enjoy programming: it's a",
+    "                space where creativity meets logic, and the possibilities are endless.",
+    "                I've been working with **Python and Django** since 2017, building production-ready platforms,",
+    "                scalable APIs, and internal tools for startups and enterprises. I’m passionate about clean code,",
+    "                modular architecture, and solving real problems through automation and smart design.",
+    "                I’ve contributed to several B2B and B2C platforms, co-founded a tech startup, led engineering teams,",
+    "                and integrated AI tools into production workflows.",
+    "                When I’m not coding, I love learning about new technologies, exploring open-source projects, or just",
+    "                tweaking my dotfiles 😄",
     "<br>"
 ];
 
